@@ -33,3 +33,26 @@ stop.addEventListener(`click`, () => {
     clearInterval(time);
 });
 
+// BONUS 4.
+let minute = 2;
+let sec = 00;
+const div3 = document.querySelector(`#countdown`);
+const p3 = document.createElement(`p`);
+p3.innerText = `${minute}:${sec}`;
+div3.append(p3);
+const countdown = setInterval(() => {
+    if (minute > 0 && sec === 00) {
+        minute--;
+        sec = 59;
+        p3.innerText = `${minute}:${sec}`;
+    } else if (10 <= sec < 60) {
+        p3.innerText = `${minute}:${sec}`;
+        sec--;
+    } else if (sec < 10) {
+        p3.innerText = `${minute}:0${sec}`;
+        sec--;
+    } else if (minute === 0 && sec === 00) {
+        p3.innerText = `TIME IS UP`
+        clearInterval(countdown);
+    }
+}, 1000);
