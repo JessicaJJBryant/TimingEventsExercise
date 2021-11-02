@@ -55,3 +55,26 @@ const countdown = setInterval(() => {
         clearInterval(countdown);
     }
 }, 1000);
+
+// OR (with more math and with a ternary)
+const countdown2 = document.querySelector(`#countdown`);
+const p4 = document.createElement(`p`);
+p4.innerText = `2:00`;
+countdown2.append(p4);
+
+const startTime = 2;
+let currentTime = startTime * 60;
+function updateCountdown() {
+    const minutes = Math.floor(currentTime / 60);
+    let seconds = currentTime % 60;
+    seconds = (seconds < 10) ? `0` + seconds : seconds; //ternary
+    p4.innerText = `${minutes}:${seconds}`;
+    currentTime--;
+}
+setInterval(() => {
+    updateCountdown();
+    // After currentTime is less than 0, the p4.innerText is immediately changed to `TIME IS UP` every time the code in the anonymous arrow function is run.
+    if (currentTime < 0) {
+        p4.innerText = `TIME IS UP`;
+    }
+}, 1000);
